@@ -19,10 +19,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableSwagger2
-public class WebAppApplication {
+public class DepartmentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebAppApplication.class, args);
+		SpringApplication.run(DepartmentApplication.class, args);
 	}
 
 	@Bean
@@ -35,6 +35,14 @@ public class WebAppApplication {
 				.apiInfo(new ApiInfoBuilder().version("1.0").title("Department API").description("Documentation Department API v1.0").build());
 	}
 	
-	
+	@Bean
+	DepartmentRepository repository() {
+		DepartmentRepository repository = new DepartmentRepository();
+		repository.add(new Department(1L, "Development"));
+		repository.add(new Department(1L, "Operations"));
+		repository.add(new Department(2L, "Development"));
+		repository.add(new Department(2L, "Operations"));		
+		return repository;
+	}
 	
 }
